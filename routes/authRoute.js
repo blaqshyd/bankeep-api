@@ -1,79 +1,72 @@
 const express = require("express");
 const { constants } = require("../constants");
 const bcryptjs = require("bcryptjs");
-const User = require("../models/userModel");
+const User = require("../models/userSchema");
 const authRouter = express.Router();
 
-
-
-authRouter.post('/register', async (req, res) =>{
+authRouter.post("/register", async (req, res) => {
   try {
+    //* If there is a user with the same email or username
+    //* It should throw corresponding error messages
+    const { name, email, password, username } = req.body;
+    const emailExists = await User.findOne({ email });
+    const userNameExists = await User.findOne({ username });
+    const hashedPassword = await bcryptjs.hash(password, 8);
+    if (!name || !email || !password || !username) {
+      res.status(constants.UNAUTHORIZED);
+    }
 
-   //? send the user info to the body
-   const {name, email, password, username} = req.body;
-   if(!name || !email || !password || !username){
-    res.status(constants.UNAUTHORIZED);
-   //  throw new err('Auth Failed');
-   }
-//? If user exists already
-   const userExists = await User.findOne({email});
-   if (userExists){
-return res.status(constants.UNAUTHORIZED).json({message: "User already exists!"});
-   }
-//? password encryption
-   const hashedPassword = await bcryptjs.hash(password, 8);
-//? Create new user if there's not existing user
-   // let user = new User.create({
-   //    name,
-   //    email,
-   //    password: hashedPassword,
-   //    username,
-   // });
-   // res.json(user);
+    if (emailExists) {
+      return res
+        .status(constants.UNAUTHORIZED)
+        .json({ message: "Email already exists!" });
+    }
+    if (userNameExists) {
+      return res
+        .status(constants.UNAUTHORIZED)
+        .json({ message: "Username is taken!" });
+    }
 
-//? Alternative for the user create
-
-let user = new User({
+    let user = new User({
       name,
       email,
       password: hashedPassword,
       username,
-});
-user = await user.save();
-res.json(user); 
-
-
+    });
+    user = await user.save();
+    res.json(user);
   } catch (err) {
-   res.status(constants.SERVER_ERROR).json({err: err.message});
-  
+    res.status(constants.SERVER_ERROR).json({ err: err.message });
   }
 });
 
+authRouter.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const emailExists = await User.findOne({ email });
 
-authRouter.post('/login', async (req, res ) =>{
-   try {
-      const { email, password} = req.body;
-      const user = await User.findOne({email});
+    if (!email || !password) {
+      res.status(constants.UNAUTHORIZED);
+    }
 
-      if (!user){
-         return res.status(constants.UNAUTHORIZED).json({message: "User with this email does not exist"});
-      }
+    if (!emailExists) {
+      return res
+        .status(constants.UNAUTHORIZED)
+        .json({ message: "User with this email does not exist" });
+    }
+    const correctPassword = await bcryptjs.compare(password, User.password);
 
-      const correctPassword = await bcryptjs.compare(password, user.password);
-      if (!correctPassword){
-         return res.status(constants.UNAUTHORIZED).json({message: "Incorrect password"});
-      }
+    if (!correctPassword) {
+      return res
+        .status(constants.UNAUTHORIZED)
+        .json({ message: "Incorrect password" });
+    }
 
-      // const token = jwt.sign({id: user._id}, "passwordKey");
-      // res.json({token, ...user._doc});
-      
-   } catch (err) {
-      res.status(constants.SERVER_ERROR).json({err: err.message});
-      
-   }
-})
-
+   //  const token = jwt.sign({ id: User._id }, "passwordKey");
+   //  res.json({ token, ...User._doc });
+  } catch (err) {
+    res.status(constants.SERVER_ERROR).json({ err: err.message });
+  }
+});
 
 module.exports = authRouter;
-
-
