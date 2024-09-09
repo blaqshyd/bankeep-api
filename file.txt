@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BanKeep API</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <section class="header">
+      <div class="logo"></div>
+    
+    <article>
+      <h2>Hi</h2>
+      <p>Welcome to BanKeep API documentation</p>
+    </article>
+  </section>
+
+    <script src="js/script.js" type="text/javascript"></script>
+  </body>
+</html>
+
+
+{
+    // List of request and response headers to be redacted
+    redactHeaders: ["Authorization"],
+    // Json path list of response body fields to be redacted
+    redactResponseBody: ["$.user.email", "$.user.age"],
+    // Json path list of request body fields to be redacted
+    redactRequestBody: ["$.password", "$.credit_card", "$.ccv"],
+    // Set debug to true to help in troubleshooting issues
+    debug: true
+}
+  
