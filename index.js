@@ -1,10 +1,9 @@
-// Import required modules
 import { APIToolkit, observeAxios, ReportError } from "apitoolkit-express";
 import axios from 'axios';
 import dotenv from 'dotenv';
 import express from "express";
-import connectDb from './config/dbConnection';
-import authRoute from './routes/authRoute';
+import connectDb from './config/dbConnection.js';
+import authRoute from './routes/authRoute.js';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -18,12 +17,13 @@ const app = express();
 // Define the port number
 const port = process.env.PORT || 5000;
 
+// Initialize APIToolkit client
+const apitoolkitClient = APIToolkit.NewClient({ apiKey: process.env.API_KEY });
+
+
 // Middleware to parse JSON and URL-encoded requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Initialize APIToolkit client
-const apitoolkitClient = APIToolkit.NewClient({ apiKey: process.env.API_KEY });
 
 // Use APIToolkit middleware
 app.use(apitoolkitClient.expressMiddleware);
@@ -32,7 +32,7 @@ app.use(apitoolkitClient.expressMiddleware);
 app.use('/api/users', authRoute);
 
 // Root route with error handling
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
     try {
       let inf = 1/0;
       res.send("The impossible number is: " + inf);
@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
     }
   });
  
-  app.get('/post', async (req, res) => {
+  app.get('/api/post', async (req, res) => {
     const response = await observeAxios(axios).get("https://jsonplaceholder.typicode.com/posts/1");
     res.send(response.data);
 });

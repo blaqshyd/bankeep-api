@@ -1,7 +1,10 @@
-const express = require("express");
-const { constants } = require("../constants");
-const bcryptjs = require("bcryptjs");
-const User = require("../models/userSchema");
+import bcryptjs from "bcryptjs";
+import express from "express";
+import jwt from "jsonwebtoken";
+import constants from "../constants.js";
+import User from "../models/userSchema.js";
+
+
 const authRouter = express.Router();
 
 authRouter.post("/register", async (req, res) => {
@@ -62,11 +65,13 @@ authRouter.post("/login", async (req, res) => {
         .json({ message: "Incorrect password" });
     }
 
-   //  const token = jwt.sign({ id: User._id }, "passwordKey");
-   //  res.json({ token, ...User._doc });
+    const token = jwt.sign({ id: User._id }, process.env.PASSWORD_KEY);
+    res.json({ token, ...User._doc });
+    console.log(token);
   } catch (err) {
     res.status(constants.SERVER_ERROR).json({ err: err.message });
   }
 });
 
-module.exports = authRouter;
+
+export default authRouter;
