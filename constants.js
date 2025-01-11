@@ -1,10 +1,9 @@
-exports.constants = {
-  SUCESS: 200,
-  CREATED: 201,
-  NO_CONTENT: 204,
-  VALIDATION_ERROR: 400,
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  SERVER_ERROR: 500,
+const constants = {
+    VALIDATION_ERROR: 400,
+    UNAUTHORIZED: 401,
+    FORBIDDEN: 403,
+    NOT_FOUND: 404,
+    SERVER_ERROR: 500,
 };
+
+export default constants;
