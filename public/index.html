@@ -1,16 +1,188 @@
 
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Auth API!</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  </head>
-  <body>
-    <section>
-      Welcome to BanKeep!
-    </section>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation Landing Page</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <img src="images/avatartion.png" alt="Logo" id="logo">
 
-    <script src="script.js" type="text/javascript"></script>
-  </body>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#api-endpoints">API Endpoints</a></li>
+        <li><a href="#parameters">Parameters</a></li>
+        <li><a href="#response-codes">Response Codes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="hero">
+      <h1>API Documentation</h1>
+      <p>Welcome to our API documentation. Here you'll find everything you need to get started with our API.</p>
+      <button>Get Started</button>
+    </section>
+    <section id="getting-started">
+      <h2>Getting Started</h2>
+      <p>To get started with our API, you'll need to sign up for an account and obtain an API key. You can do this by clicking the "Sign Up" button below.</p>
+      <button>Sign Up</button>
+      <p>Once you have your API key, you can use it to make requests to our API endpoints.</p>
+    </section>
+    <section id="api-endpoints">
+      <h2>API Endpoints</h2>
+      <ul>
+        <li><a href="#users">Users</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#orders">Orders</a></li>
+      </ul>
+      <section id="users">
+        <h3>Users</h3>
+        <p>The users endpoint allows you to retrieve information about users.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Endpoint</th>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/users</td>
+              <td>GET</td>
+              <td>Retrieve a list of all users.</td>
+            </tr>
+            <tr>
+              <td>/users/{id}</td>
+              <td>GET</td>
+              <td>Retrieve information about a specific user.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="products">
+        <h3>Products</h3>
+        <p>The products endpoint allows you to retrieve information about products.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Endpoint</th>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/products</td>
+              <td>GET</td>
+              <td>Retrieve a list of all products.</td>
+            </tr>
+            <tr>
+              <td>/products/{id}</td>
+              <td>GET</td>
+              <td>Retrieve information about a specific product.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="orders">
+        <h3>Orders</h3>
+        <p>The orders endpoint allows you to retrieve information about orders.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Endpoint</th>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/orders</td>
+              <td>GET</td>
+              <td>Retrieve a list of all orders.</td>
+            </tr>
+            <tr>
+              <td>/orders/{id}</td>
+              <td>GET</td>
+              <td>Retrieve information about a specific order.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+    <section id="parameters">
+      <h2>Parameters</h2>
+      <p>The following parameters are available for use with our API endpoints:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>api_key
+            </td>
+            <td>Your API key.</td>
+          </tr>
+          <tr>
+            <td>limit</td>
+            <td>The number of results to return.</td>
+          </tr>
+          <tr>
+            <td>offset</td>
+            <td>The starting point for the results.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="response-codes">
+      <h2>Response Codes</h2>
+      <p>The following response codes are used by our API:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>200</td>
+            <td>OK - The request was successful.</td>
+          </tr>
+          <tr>
+            <td>401</td>
+            <td>Unauthorized - The API key is invalid or missing.</td>
+          </tr>
+          <tr>
+            <td>404</td>
+            <td>Not Found - The requested resource was not found.</td>
+          </tr>
+          <tr>
+            <td>500</td>
+            <td>Internal Server Error - An error occurred on the server.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>If you have any questions or need help with our API, please don't hesitate to contact us.</p>
+      <p>Email: <a href="mailto:blaqshyd@kodashub.com">blaqshyd@kodashub.com</a></p>
+      <p>Phone: 555-555-5555</p>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Example API</p>
+  </footer>
+  <script src="js/script.js"></script>
+</body>
 </html>
