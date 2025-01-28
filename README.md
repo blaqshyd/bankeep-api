@@ -51,8 +51,9 @@ This project uses [ApiToolkit](https://apitoolkit.io/) for real-time API monitor
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
-- Daniel A - Initial work
+## 👥 Contributors
+- Daniel A - [blaqshyd](https://x.com/blaqshyd)
+- Samuel Peters - [Biefilled](https://x.com/biefilled)
 
 ## 🙏 Acknowledgments
 - List any acknowledgments here

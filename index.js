@@ -2,13 +2,11 @@ import { APIToolkit, observeAxios, ReportError } from "apitoolkit-express";
 import axios from "axios";
 import dotenv from "dotenv";
 import express from "express";
-import connectDb from "./config/dbConnection.js";
-import authRoute from "./routes/authRoute.js";
-import swaggerUi from "swagger-ui-express";
 import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 import { createServer } from "http";
+import path from "path";
+import swaggerUi from "swagger-ui-express";
+import { fileURLToPath } from "url";
 import connectDb from "./config/dbConnection.js";
 import constants from "./constants.js";
 import authRoute from "./routes/authRoute.js";
@@ -57,8 +55,6 @@ const __dirname = path.dirname(__filename);
 const swaggerDocument = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "./swagger/swagger.json"), "utf8")
 );
-// Swagger UI setup
-app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Mount auth routes
 app.use("/api/auth", authRoute);
@@ -113,14 +109,15 @@ app.get("/api/post", async (req, res) => {
   });
 });
 
+
+// Swagger UI setup
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 // Automatically report unhandled errors
 // Error handler must be before any other error middleware and after all controllers
 app.use(apitoolkitClient.errorHandler);
 
-// Start the server
-// app.listen(port, () => {
-//   console.log(`BanKeep API listening on port ${port}`);
-// });
 
 const server = createServer(app);
 server.listen(port);
