@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/swagger/(.*)", 
+      "dest": "/swagger/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "index.js"
     }
