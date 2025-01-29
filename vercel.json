@@ -1,35 +1,19 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "index.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/auth/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/user/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/timeline/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/protected/(.*)",
-        "dest": "index.js"
-      },
-      {
-        "src": "/api/health",
-        "dest": "index.js"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "index.js"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/swagger/(.*)", 
+      "dest": "/swagger/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
+  ]
+}

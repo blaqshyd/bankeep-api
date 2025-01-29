@@ -11,19 +11,19 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apitoolkit-express": "^2.4.6",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-async-handler": "^1.2.0",
-    "jsonwebtoken": "^9.0.0",
-    "live-server": "^1.2.0",
-    "mongoose": "^7.0.3",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "apitoolkit-express": "3.6.2",
+    "bcryptjs": "2.4.3",
+    "dotenv": "16.4.7",
+    "express": "5.0.1",
+    "express-async-handler": "1.2.0",
+    "jsonwebtoken": "9.0.2",
+    "live-server": "1.2.2",
+    "mongoose": "8.9.5",
+    "swagger-jsdoc": "6.2.8",
+    "swagger-ui-express": "5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "nodemon": "3.1.9"
   },
   "type": "module"
 }
