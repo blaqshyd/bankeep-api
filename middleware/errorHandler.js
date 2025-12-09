@@ -11,13 +11,17 @@ const errorHandler = (err, req, res, next) => {
         message: err.message,
         stackTrace: err.stackTrace,
       });
+      break;
 
     case constants.NOT_FOUND:
       res.json({
         title: "Not Found",
+        code: res.statusCode,
+        success: false,
         message: err.message,
         stackTrace: err.stackTrace,
       });
+      break;
 
     case constants.UNAUTHORIZED:
       res.json({
@@ -27,6 +31,7 @@ const errorHandler = (err, req, res, next) => {
         message: err.message,
         stackTrace: err.stackTrace,
       });
+      break;
 
     case constants.FORBIDDEN:
       res.json({
@@ -36,16 +41,24 @@ const errorHandler = (err, req, res, next) => {
         message: err.message,
         stackTrace: err.stackTrace,
       });
+      break;
     case constants.SERVER_ERROR:
       res.json({
         title: "Server Error",
         code: res.statusCode,
         success: false,
         message: err.message,
+        error: {
+        code: err.code || constants.SERVER_ERROR,
+        details:
+          process.env.NODE_ENV === "development" ? err.message : undefined,
+      },
         stackTrace: err.stackTrace,
       });
+      break;
     default:
       console.log("No error, all good.");
+      next();
       break;
   }
 };
