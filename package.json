@@ -13,7 +13,6 @@
   "dependencies": {
     "apitoolkit-express": "3.6.2",
     "@opentelemetry/api": "^1.9.0",
-    "axios": "^1.7.9",
     "bcryptjs": "2.4.3",
     "dotenv": "16.4.7",
     "express": "5.0.1",
