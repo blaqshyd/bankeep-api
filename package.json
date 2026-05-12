@@ -20,7 +20,7 @@
     "express-async-handler": "1.2.0",
     "jsonwebtoken": "^9.0.2",
     "live-server": "^1.2.0",
-    "mongoose": "8.9.5",
+    "mongoose": "8.22.1",
     "swagger-jsdoc": "6.2.8",
     "swagger-ui-express": "5.0.1"
   },
